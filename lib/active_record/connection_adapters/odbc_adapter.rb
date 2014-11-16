@@ -1591,7 +1591,9 @@ begin
             # ODBC connections to Progress >= v9 are assumed to be to
             # the SQL-92 engine. Connections to Progress <= v8 are
             # assumed to be to the SQL-89 engine.
-            symbl = dbmsVer <= 8 ? :progress89 : :progress
+            symbl = (dbmsVer <= 8 && dbmsVer != 1) ? :progress89 : :progress
+          elsif dbmsName == "o\x00p\x00e\x00n\x00e\x00d\x00g\x00e\x00"
+            symbl = :progress
           elsif dbmsName =~ /sql.*server/i
             symbl = :microsoftsqlserver
           elsif dbmsName =~ /sybase/i
