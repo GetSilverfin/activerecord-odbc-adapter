@@ -394,6 +394,16 @@ begin
                 :supports_count_distinct => true,
                 :boolean_col_surrogate => "SMALLINT"
               }
+            },
+            :advantage => {
+              :any_version => {
+                :primary_key => "INT NOT NULL IDENTITY PRIMARY KEY",
+                :has_autoincrement_col => true,
+                :supports_migrations => true,
+                :supports_schema_names => false,
+                :supports_count_distinct => true,
+                :boolean_col_surrogate => "SMALLINT"
+              }
             }
           }
 
@@ -1605,6 +1615,8 @@ begin
           elsif dbmsName =~ /visualfoxpro/i
             # Try to access Visual Fox Pro database as a PostgreSQL database, works for simple queries.
             symbl = :postgresql
+          elsif dbmsName =~ /advantage/i
+            symbl = :advantage
           else
             raise ActiveRecord::ActiveRecordError, "ODBCAdapter: Unsupported database (#{dbmsName})"
           end
