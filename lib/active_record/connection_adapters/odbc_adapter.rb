@@ -1615,7 +1615,7 @@ begin
           elsif dbmsName =~ /visualfoxpro/i
             # Try to access Visual Fox Pro database as a PostgreSQL database, works for simple queries.
             symbl = :postgresql
-          elsif dbmsName =~ /advantage/i
+          elsif dbmsName =~ /advantage/i or dbmsName == "a\x00d\x00v\x00a\x00n\x00t\x00a\x00g\x00e\x00"
             symbl = :advantage
           else
             raise ActiveRecord::ActiveRecordError, "ODBCAdapter: Unsupported database (#{dbmsName})"
