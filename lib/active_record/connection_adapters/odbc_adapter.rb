@@ -404,6 +404,16 @@ begin
                 :supports_count_distinct => true,
                 :boolean_col_surrogate => "SMALLINT"
               }
+            },
+            :pervasive => {
+              :any_version => {
+                :primary_key => "INT NOT NULL IDENTITY PRIMARY KEY",
+                :has_autoincrement_col => true,
+                :supports_migrations => true,
+                :supports_schema_names => false,
+                :supports_count_distinct => true,
+                :boolean_col_surrogate => "SMALLINT"
+              }
             }
           }
 
@@ -1617,6 +1627,8 @@ begin
             symbl = :postgresql
           elsif dbmsName =~ /advantage/i or dbmsName == "a\x00d\x00v\x00a\x00n\x00t\x00a\x00g\x00e\x00"
             symbl = :advantage
+          elsif dbmsName == "p\x00e\x00r\x00v\x00a\x00s\x00i\x00v\x00e\x00.\x00s\x00q\x00l\x00"
+            symbl = :pervasive
           else
             raise ActiveRecord::ActiveRecordError, "ODBCAdapter: Unsupported database (#{dbmsName})"
           end
