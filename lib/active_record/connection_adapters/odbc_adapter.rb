@@ -1620,7 +1620,7 @@ begin
             symbl = :sybase
           elsif dbmsName =~ /virtuoso/i
             symbl = :virtuoso
-          elsif dbmsName =~ /SQLAnywhere/i or dbmsName =~ /adaptiveserveranywhere/i
+          elsif dbmsName =~ /SQLAnywhere/i or dbmsName =~ /adaptiveserveranywhere/i or dbmsName == "a\x00d\x00a\x00p\x00t\x00i\x00v\x00e\x00\x00s\x00e\x00r\x00v\x00e\x00r\x00\x00a\x00n\x00y\x00w\x00h\x00e\x00r\x00e\x00"
             symbl = :sqlanywhere
           elsif dbmsName =~ /visualfoxpro/i
             # Try to access Visual Fox Pro database as a PostgreSQL database, works for simple queries.
